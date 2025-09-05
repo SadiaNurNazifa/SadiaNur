@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sadia Nur Nazifa</title>
+    <meta name="author" content="Sadia Nur Nazifa" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="images/logo.png" />
+
+    <link rel="stylesheet" href="stylesheet.css" />
+    <style>
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+.navbar a,
+.name,
+button,
+h1, h2, h3, h4, h5, h6,
+p,
+span,
+div {
+    font-family: "Times New Roman", Times, serif !important;
+}
+
+      /* Reset box-sizing */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      /* Body & navbar */
+      body {
+        margin: 0;
+        padding-top: 60px; /* offset for fixed navbar */
+        font-family: "Times New Roman", Times, serif !important;
+
+      }
+      .navbar {
+        width: 100%;
+        background: #333;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+      .navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .navbar a:hover {
+        background: #575757;
+        color: white;
+      }
+
+      /* Typing cursor effect */
+      .name {
+        font-size: 28px;
+        font-weight: 700;
+        font-family: "Times New Roman", Times, serif !important;
+      }
+      .caret {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background: currentColor;
+        margin-left: 3px;
+        animation: blink 1s step-end infinite;
+        vertical-align: -2px;
+        font-family: "Times New Roman", Times, serif !important;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+
+/*  fixed navbar short and non-obtrusive on phones */
+@media (max-width: 768px) {
+  .navbar {
+    white-space: nowrap;           /* keep links on one line */
+    overflow-x: auto;              /* scroll horizontally if needed */
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+  }
+  .navbar::-webkit-scrollbar { display: none; } /* hide scrollbar (WebKit) */
+
+  /* Keep the same inline look, just tighten spacing a bit for phones */
+  .navbar a {
+    float: none;                   /* let them flow inline */
+    display: inline-block;         /* single row */
+    padding: 10px 12px;            /* slightly tighter */
+    font-size: 16px;
+  }
+
+  /* Body top padding a bit smaller on phones */
+  body { padding-top: 54px; }
+}
+
+/* Make anchor targets stop below the fixed navbar (no content hidden) */
+#about, #research, #news, #gallery,
+#projects-section, #publications-section,
+.section-content {
+  scroll-margin-top: 70px;         /* safe default; JS below will refine */
+}
+
+
+img { height: auto; }
+
+/* Make iframes fluid: keep 16:9 without editing HTML */
+iframe {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 3 / 1.95;           /* modern browsers */
+  border: 0;
+}
+
+
+@media (max-width: 480px) {
+  .gallery-container > div {
+    flex: 1 1 100%;
+  }
+}
+
+
+img[alt="profile photo"] {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Tables inside sections: allow clean stacking without changing content */
+@media (max-width: 768px) {
+  .section-content table {
+    width: 100%;
+  }
+  .section-content table img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Lightbox modal: more breathable on phones */
+@media (max-width: 768px) {
+  .popup-modal { padding-top: 30px; }
+  .popup-content { max-width: 90%; max-height: 80%; }
+  #caption { font-size: 16px; padding: 0 10px; }
+  .close { top: 10px; right: 16px; font-size: 34px; }
+}
+
+/* Minor typo guard (doesn't change layout, just prevents invalid value) */
+.gallery-container > div { text-align: left; }
+
+      /* Responsive tables & flex containers */
+      table,
+      img,
+      .section-content,
+      .research-container,
+      .toggle-buttons {
+        max-width: 100%;
+      }
+      .research-container,
+      .section-content table {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      @media (max-width: 768px) {
+        .section-content table tr {
+          flex-direction: column;
+          align-items: center;
+        }
+        .section-content table td {
+          width: 100% !important;
+          padding: 10px 0;
+        }
+        .toggle-buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .navbar a {
+          float: none;
+          display: block;
+          text-align: center;
+        }
+      }
+
+      /* Toggle buttons */
+      .toggle-buttons {
+        text-align: left;
+        margin: 16px 0 8px;
+      }
+      .toggle-buttons button {
+        padding: 10px 20px;
+        margin: 0 8px;
+        background: #fff;
+        color: #000;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        font-family: "Times New Roman", Times, serif !important;
+        border-radius: 6px;
+        transition: background 0.2s ease;
+      }
+      .toggle-buttons button:hover {
+        background: #ccc;
+      }
+      .toggle-buttons button.active {
+        background: #fff;
+        color: #000;
+        border: 2px solid #272727;
+      }
+
+      /* Sections */
+      .section-content {
+        display: none;
+      }
+      .section-content.active {
+        display: block;
+      }
+
+      /* Research boxes */
+      .research-container > div {
+        flex: 1;
+        min-width: 200px;
+        max-width: 300px;
+        background: #f2f2f2;
+        color: #000;
+        padding: 15px;
+        border-radius: 6px;
+        text-align: left;
+      }
+
+      /* Gallery */
+.gallery-container {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.gallery-container > div {
+  flex: 1 1 calc(50% - 10px); /* now 2 items per row */
+  text-align: le;
+  margin-bottom: 15px;
+}
+
+.gallery-container img,
+.gallery-container iframe {
+  width: 100%;
+  border-radius: 6px;
+}
+
+
+      /* News items */
+      .news-item {
+        background: #fff;
+        padding: 15px 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        margin-bottom: 20px;
+        text-align: left;
+        font-family: "Times New Roman", Times, serif !important;
+      }
+      .news-item .date {
+        color: #8b4513;
+        font-weight: bold;
+        margin-bottom: 6px;
+        font-family: "Times New Roman", Times, serif !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <a href="#about">About</a>
+      <a href="#research">Research Interest</a>
+      <a
+        href="#publications-section"
+        onclick="showSection('publications-section')"
+        >Publications</a
+      >
+      <a href="#projects-section" onclick="showSection('projects-section')"
+        >Projects</a
+      >
+      <a href="#news">News</a>
+      <a href="#gallery">Gallery</a>
+    </div>
+
+    <!-- Main Content -->
+    <table
+      style="
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+        border-collapse: separate;
+      "
+      id="about"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <!-- About Section -->
+            <table style="width: 100%; margin: auto; border-collapse: separate">
+              <tbody>
+                <tr>
+                  <td
+                    style="
+                      padding: 2.5%;
+                      width: 63%;
+                      vertical-align: middle;
+                      text-align: center;
+                    "
+                  >
+                    <p class="name">
+
+
+                      <span id="typed-name" class="name"></span><span class="caret"></span>
+                    </p>
+                    <h2>
+                    <p style="text-align: justify"> 
+                      Currently I am a Lecturer in Computer Science and Engineering at the University of Scholars, where I teach and mentor students in programming, systems design, and competitive programming. My research work revolves around Artificial Intelligence, Human-Computer Interaction, and their intersection with real-world impact.
+<br/><br/>
+I completed my B.Sc. in Computer Science and Engineering at the Military Institute of Science and Technology (MIST). Previously, I led the Science Subteam of MIST Mongol Barota in international rover competitions such as the University Rover Challenge and the Anatolian Rover Challenge, where our team secured multiple top positions globally. I have also contributed to interdisciplinary projects in environmental technology, healthcare, and robotics, and my research has been published in venues including Scientific Reports, Lecture Notes in Networks and Systems, and IEEE ICCIT.
+<br/><br/>
+Beyond teaching and research, I enjoy baking brownies and cakes, and a bit of crafting.
+                    </p>
+                    </h2>
+                    <p>
+                      <a href="mailto:sadianurnazifa@gmail.com">Email</a> /
+                      <a href="data/Sadia Nur Nazifa_ CV.pdf">CV</a> /
+                      <a
+                        href="https://scholar.google.com/citations?user=Z64OrLsAAAAJ&hl=en&oi=ao"
+                        >Google Scholar</a
+                      >
+                      /
+                      <a href="https://www.linkedin.com/in/sadianurnazifa/"
+                        >LinkedIn</a
+                      >
+                      /
+                      <a href="https://github.com/SadiaNurNazifa">GitHub</a>
+                    </p>
+                  </td>
+                  <td style="padding: 2.5%; width: 37%; max-width: 37%">
+                    <img
+  src="images/snn_portfolio.jpeg"
+  alt="profile photo"
+  class="popup-img"
+  style="
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgb(60, 58, 58);
+  "
+/>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Research Interests -->
+            <table
+              style="width: 100%; margin: auto; border-collapse: separate"
+              id="research"
+            >
+              <tbody>
+                <tr>
+                  <td style="padding: 6px; width: 100%; vertical-align: middle">
+                    <h2 style="margin-bottom: 20px">Research Interest</h2>
+
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: flex-start;
+                        gap: 10px;
+                        flex-wrap: nowrap;
+                      "
+                    >
+                      <!-- HCI -->
+                      <div
+                        style="
+                          flex: 1;
+                          min-width: 200px;
+                          max-width: 300px;
+                          background: #f2f2f2;
+                          color: #000;
+                          padding: 15px;
+                          border: 0px solid #333;
+                          border-radius: 6px;
+                          text-align: left;
+                        "
+                      >
+                        <h3 style="font-size: 16px; margin-bottom: 8px">
+                          Human-Computer Interaction
+                        </h3>
+                        <p style="font-size: 13px; line-height: 1.4">
+                          Exploring how people interact with technology to design solutions that 
+  improve everyday life, with a focus on <b>healthcare systems</b> and 
+  user-friendly digital platforms.
+                        </p>
+                      </div>
+
+                      <!-- NLP -->
+                      <div
+                        style="
+                          flex: 1;
+                          min-width: 200px;
+                          max-width: 300px;
+                          background: #f2f2f2;
+                          color: #000;
+                          padding: 15px;
+                          border: 0px solid #333;
+                          border-radius: 6px;
+                          text-align: left;
+                        "
+                      >
+                        <h3 style="font-size: 16px; margin-bottom: 8px">
+                          Natural Language Processing
+                        </h3>
+                        <p style="font-size: 13px; line-height: 1.4">
+                          Applying language technologies to develop conversational systems that facilitate communication, improve accessibility, and address real-world challenges in education and everyday life.
+                        </p>
+                      </div>
+
+                      <!-- AI -->
+                      <div
+                        style="
+                          flex: 1;
+                          min-width: 200px;
+                          max-width: 300px;
+                          background: #f2f2f2;
+                          color: #000;
+                          padding: 15px;
+                          border: 0px solid #333;
+                          border-radius: 6px;
+                          text-align: left;
+                        "
+                      >
+                        <h3 style="font-size: 16px; margin-bottom: 8px">
+                          Artificial Intelligence
+                        </h3>
+                        <p style="font-size: 13px; line-height: 1.4">
+                          Investigating intelligent systems that can learn, reason, and solve problems, with a focus on designing AI solutions that address real-world challenges across healthcare, sustainability, and diverse practical domains.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Toggle Buttons + Sections -->
+            <div class="toggle-buttons" id="work-toggle">
+              <button
+                id="btn-pubs"
+                class="active"
+                onclick="showSection('publications-section')"
+              ><h2>Publications</h2>
+                
+              </button>
+              <button id="btn-proj" onclick="showSection('projects-section')">
+                <h2>Projects</h2>
+              </button>
+            </div>
+
+            <!-- Publications Section -->
+            <div id="publications-section" class="section-content active">
+              <table
+                style="
+                  width: 100%;
+                  margin: auto;
+                  border-spacing: 0px 10px;
+                  border-collapse: separate;
+                "
+              >
+                <tbody>
+                  <tr>
+                    <td
+                      style="padding: 10px; width: 30%; vertical-align: middle"
+                    >
+                      <img
+                        src="images/mendeley.png"
+                        alt="pub2"
+                       
+                      />
+                    </td>
+                    <td
+                      style="padding: 8px; width: 80%; vertical-align: middle"
+                    >
+                      <a href="https://data.mendeley.com/datasets/ycyr7km84w/2">
+                        <span class="papertitle"
+                          >Self Medication Factors in Bangladesh</span
+                        >
+                      </a>
+                      <br />
+                      Ashif Mahmud Joy, Dalia Akter, <strong>Sadia Nur Nazifa</strong>, Shaila Sharmin, Md. Ahsan Arif
+                      <br />
+                      <em>Mendeley Data, 2025</em> <br />
+                      <a href="https://data.mendeley.com/datasets/ycyr7km84w/2/files/ddb1f489-955d-4119-b5e6-0e5d30510201">Dataset</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    
+                    <td
+                      style="padding: 10px; width: 10%; vertical-align: middle"
+                    >
+                      <img
+                        src="images/unlocking voices.png"
+                        alt="Unlocking Voices"
+                        width="250"
+                        height="250"
+                      />
+                    </td>
+                    <td
+                      style="padding: 8px; width: 80%; vertical-align: middle"
+                    >
+                      <a href="https://doi.org/10.1109/ICCIT64611.2024.11022350"
+                        ><span class="papertitle"
+                          >Unlocking Voices: Assessing the Usability and
+                          Accessibility of Mobile Applications for Stutter
+                          Reduction</span
+                        ></a
+                      ><br />
+                      <strong>Sadia Nur Nazifa</strong>, Shadmanee Tasneem Mulk,
+                      Tasfia Akter Sara, Tasnim Ullah Shakib, Muhammad Nazrul
+                      Islam<br />
+                      <em>ICCIT 2024</em>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      style="padding: 15px; width: 40%; vertical-align: middle"
+                    >
+                      <img
+                        src="images/mbrld.png"
+                        alt="pub2"
+                        width="300"
+                        height="150"
+                      />
+                    </td>
+                    <td
+                      style="padding: 8px; width: 80%; vertical-align: middle"
+                    >
+                      <a href="https://doi.org/10.1038/s41598-024-77808-6">
+                        <span class="papertitle"
+                          >A multiple biomolecules-based rapid life detection
+                          protocol embedded in a rover scientific subsystem for
+                          soil sample analysis</span
+                        >
+                      </a>
+                      <br />
+                      Akib Zaman, Fardeen Ashraf, Haseena Khan, Faria Noshin
+                      Ahona, Oliullah Samir, Asif Mahmud Rayhan,
+                      <strong>Sadia Nur Nazifa</strong>, Hafsah Chowdhury, Md.
+                      Mahbubur Rahman <br />
+                      <em>Scientific Reports, 2024</em> <br />
+                      <a href="https://rdcu.be/eCU8x">Paper</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      style="padding: 10px; width: 30%; vertical-align: middle"
+                    >
+                      <img src="images/ppdhero.png" alt="pub3" width="330" />
+                    </td>
+                    <td
+                      style="padding: 8px; width: 80%; vertical-align: middle"
+                    >
+                      <a href="https://doi.org/10.1007/978-3-031-64850-2_37">
+                        <span class="papertitle"
+                          >PPDHero: Requirements Elicitation and Development of
+                          a System to Empower new Mothers on Postpartum
+                          Depression</span
+                        >
+                      </a>
+                      <br />
+                      Tasfia Sara, <strong>Sadia Nur Nazifa</strong>, Shadmanee
+                      Tasneem, Tasnim Ullah Shakib, MD Nazrul Islam <br />
+                      <em>Lecture Notes in Networks and Systems, 2024</em>
+                    </td>
+                  </tr>
+                
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Projects Section -->
+            <div id="projects-section" class="section-content">
+              <table
+                style="
+                  width: 100%;
+                  margin: auto;
+                  border-spacing: 0px 10px;
+                  border-collapse: separate;
+                "
+              >
+                <tbody>
+                  <tr>
+                    <td
+                      style="padding: 10px; width: 20%; vertical-align: middle"
+                    >
+                      <img
+                        src="images/hydro.png"
+                        alt="Hydroferma"
+                        width="200"
+                      />
+                    </td>
+                    <td
+                      style="padding: 8px; width: 80%; vertical-align: middle"
+                    >
+                      <strong>Hydroferma</strong><br />
+                      A mobile app for a hydroponic vertical farming system
+                      integrating software and hardware for water/nutrient
+                      control.<br />
+                      <a href="https://youtu.be/5X76oaXH9AY?si=9Xjd4vxuQN_c5UvJ">Video</a>
+                      <br /><br />
+                      <!-- Tag Buttons -->
+                      <span
+                        style="
+                          display: inline-block;
+                          background: #bab9b9;
+                          color: #ffffff;
+                          padding: 5px 12px;
+                          border-radius: 12px;
+                          font-size: 11px;
+                          margin-right: 6px;
+                        "
+                        >IoT</span
+                      >
+                      <span
+                        style="
+                          display: inline-block;
+                          background: #bab9b9;
+                          color: #ffffff;
+                          padding: 5px 12px;
+                          border-radius: 12px;
+                          font-size: 11px;
+                          margin-right: 6px;
+                        "
+                        >Image Processing</span
+                      >
+                      <span
+                        style="
+                          display: inline-block;
+                         background: #bab9b9;
+                          color: #ffffff;
+                          padding: 5px 12px;
+                          border-radius: 12px;
+                          font-size: 11px;
+                        "
+                        >Machine Learning</span
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td
+                      style="padding: 15px; width: 20%; vertical-align: middle"
+                    >
+                      <img
+                        src="images/photoframe.png"
+                        alt="pub2"
+                        width="200"
+                        height="200"
+                      />
+                    </td>
+                    <td
+                      style="padding: 8px; width: 80%; vertical-align: middle"
+                    >
+                      <span class="papertitle"
+                        ><strong>Sapphire Necklace</strong></span
+                      >
+
+                      <br />
+                      An animated short video designed with Blender 3.6,
+                      originating from original graphics concepts.<br />
+
+                      <a href="https://youtu.be/ZQFhdwzukuw?si=DMxV022HheOT8Ckc">Video</a>
+                      <br /><br />
+                      <!-- Tag Buttons -->
+                      <span
+                        style="
+                          display: inline-block;
+                          background: #bab9b9;
+                          color: #ffffff;
+                          padding: 5px 12px;
+                          border-radius: 12px;
+                          font-size: 11px;
+                          margin-right: 6px;
+                        "
+                        >Blender</span
+                      >
+                     
+                      <span
+                        style="
+                          display: inline-block;
+                          background: #bab9b9;
+                          color: #ffffff;
+                          padding: 5px 12px;
+                          border-radius: 12px;
+                          font-size: 11px;
+                        "
+                        >3D Animation</span
+                      >
+                    </td>
+                  </tr>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td
+                      style="padding: 10px; width: 30%; vertical-align: middle"
+                    >
+                      <img src="images/rfid.png" alt="pub3" width="220" />
+                    </td>
+                    <td
+                      style="padding: 8px; width: 80%; vertical-align: middle"
+                    >
+                      <span class="papertitle"></span>
+                      <strong>Smart Office Attendance System</strong>
+
+                      <br />
+                      Developed with RFID and Arduino for automatic
+                      identification and data storage.
+                      <br /><br />
+                      <!-- Tag Buttons -->
+                     
+                      <span
+                        style="
+                          display: inline-block;
+                         background: #bab9b9;
+                          color: #ffffff;
+                          padding: 5px 12px;
+                          border-radius: 12px;
+                          font-size: 11px;
+                          margin-right: 6px;
+                        "
+                        >Arduino</span
+                      >
+                      <span
+                        style="
+                          display: inline-block;
+                          background: #bab9b9;
+                          color: #ffffff;
+                          padding: 5px 12px;
+                          border-radius: 12px;
+                          font-size: 11px;
+                        "
+                        >Embedded Systems</span
+                      >
+                    </td>
+                  </tr>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+<style>
+   /* Smooth hover effect for the news toggle buttons */
+  /* .news-actions .btn {
+    transition: background-color .2s ease, transform .05s ease;
+  }
+  /* Same hover color for both buttons */
+  /* .news-actions .btn:hover {
+        background: #ccc;   /* darker than #555555 */
+  
+  .news-actions .btn:active {
+    transform: translateY(1px);
+  }  */
+  /* Replace your previous button hover/active snippet with this */
+.news-actions .btn {
+  transition: background-color .12s ease; /* no transform transition */
+}
+.news-actions .btn:hover { background: #ccc; }
+.news-actions .btn:active { transform: none; } /* no down-then-up nudge */
+
+  /* .news-actions .btn:focus-visible {
+    outline: 2px solid #000; 
+    outline-offset: 2px;
+  } */
+  .news-item.is-hidden { display: none; }
+  .news-actions { width: 100%; max-width: 800px; margin: 8px auto 0; text-align: center;}
+  .news-actions .btn {
+    background: #ffffff; color: #000000; border: 2; padding: 8px 14px; border-radius: 6px; cursor: pointer;
+    display: inline-block; font-family: "Times New Roman", Times, serif;
+  }
+  .news-actions .btn:focus { outline: 0px; background-color:  #cecdcd; outline-offset: 2px; }
+  .news-actions .btn.more::after  { content: " ▼"; } /* down arrow */
+  .news-actions .btn.less::after  { content: " ▲"; } /* up arrow  */
+</style>
+
+            <!-- News Section -->
+             
+            <table
+              style="
+                width: 100%; margin: auto; border-collapse: separate
+              "
+              id="news"
+            >
+              <tbody>
+                <tr><td style="padding: 6px; width: 100%; vertical-align: middle"><h2>News</h2></td>
+                  
+                </tr>
+              </tbody>
+            </table>
+         <div style="width: 100%; max-width: 800px; margin: auto; font-family: 'Times New Roman', Times, serif; line-height: 1.6;">
+
+  <!-- 2025 Achievements -->
+  <div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">May 2025</div>
+    Organized "She Innovates," a project-based competition to promote STEM engagement among female students.
+  </div>
+
+  <div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">March 2025</div>
+    Started as a Data Analyst of QFactor Chiropractic in Work Bright Business Solutions.
+  </div>
+
+  <div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">2025</div>
+    Published a research paper in peer-reviewed journals, Scientific Reports. <a href="https://doi.org/10.1038/s41598-024-77808-6"><b>Read here.</b></a>
+  </div>
+
+  <!-- 2024 Achievements -->
+  <div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">December 2024</div>
+    Received the Best Technical Presentation award at the 27th IEEE ICCIT for research on <a href="https://doi.org/10.1109/ICCIT64611.2024.11022350"><b> Mobile Applications for Stutter Reduction.</b></a>
+  </div>
+
+  <div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">August 2024</div>
+    Joined the University of Scholars as a Lecturer in the Department of Computer Science and Engineering. Check out my <a href="https://ius.edu.bd/profile/sadia-nur-nazifa"><b>Academic Profile.</b></a>
+  </div>
+ <div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">April 2024</div>
+    Graduated from the Military Institute of Science and Technology with a Bachelor's degree.
+  </div>
+
+
+  <!-- 2023 Achievements -->
+  <div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">2023</div>
+    Published my first research paper as a co-author in ISDA'23. <a href="https://doi.org/10.1007/978-3-031-64850-2_37"><b>Read here.</b></a>
+  </div>
+  <div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">June 2023</div>
+    Led the MIST Mongol Barota Science Subteam in Anatolian Rover Challenge, securing 5th place in ARC, Turkiye.
+  </div>
+<div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">May 2025</div>
+   Completed a software engineering internship at Brain Station 23.
+  </div>
+  <!-- 2022 Achievement -->
+  <div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">2022</div>
+    Achieved 2nd Runners Up position in the Anatolian Rover Challenge (ARC), Turkiye.
+  </div>
+
+  <!-- 2021 Achievement -->
+  <div class="news-item" style="padding: 15px; margin-bottom: 15px; border-left: 3px solid #555555; background-color: #f9f9f9; border-radius: 6px;">
+    <div class="date" style="font-weight: bold; color: #555555; margin-bottom: 5px;">2021</div>
+    Secured 1st place in the Virtual University Rover Challenge (URC), organized by the Mars Society, USA.
+  </div>
+
+</div>
+
+
+        <!-- Gallery Section -->
+<table style="width: 100%; margin: auto; border-collapse: separate" id="gallery">
+  <tbody>
+    <tr>
+      <td style="padding: 6px; width: 100%; vertical-align: middle">
+        <h2 style="margin-bottom: 20px">Gallery</h2>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="gallery-container">
+  <!-- Row 1 -->
+  <div>
+    <iframe width="100%" height="500"
+      src="https://www.youtube.com/embed/TBEL8TZGHMY"
+      frameborder="50"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+    <div style="text-align: center;">Recorded Lectures of Sorting an Array</div>
+  </div>
+  <div>
+    <img src="images/iupc.jpg" alt="Gallery 3" class="popup-img" />
+    <div style="text-align: center;">Problem-setter of 6th IUPC of University of Scholars</div>
+  </div>
+</div>
+
+<div class="gallery-container">
+  <!-- Row 2 -->
+  <div>
+    <img src="images/sheinnovates.jpg" alt="Gallery 6" class="popup-img" />
+    <div style="text-align: center;">Certification Ceremony of 'She Innovates' as a Co-organizer</div>
+  </div>
+  <div>
+    <img src="images/convocation.jpg" alt="Gallery 5" class="popup-img" />
+    <div style="text-align: center;">Attended 1st Convocation of University of Scholars as a Lecturer</div>
+  </div>
+</div>
+
+<div class="gallery-container">
+  <!-- Row 3 -->
+  <div>
+    <img src="images/training.jpg" alt="Gallery 3" class="popup-img" />
+    <div style="text-align: center;">Conducted Training on Poster Presentation</div>
+  </div>
+  <div>
+    <img src="images/arcmarsrover.JPG" alt="Gallery 1" class="popup-img" />
+    <div style="text-align: center;">Leading Phoenix Rover Science Team at Mars Rover Competition</div>
+  </div>
+</div>
+
+<!-- Popup Modal -->
+<div id="popupModal" class="popup-modal">
+  <span class="close">&times;</span>
+  <img class="popup-content" id="popupImage">
+  <div id="caption"></div>
+</div>
+
+<style>
+/* Popup styles */
+.popup-modal {
+  display: none; 
+  position: fixed; 
+  z-index: 9999; 
+  padding-top: 60px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.9); 
+}
+
+.popup-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+#caption {
+  margin: 20px auto;
+  text-align: center;
+  color: #f1f1f1;
+  font-size: 18px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover {
+  color: #bbb;
+}
+</style>
+
+<script>
+  // Get modal element
+  var modal = document.getElementById("popupModal");
+  var modalImg = document.getElementById("popupImage");
+  var captionText = document.getElementById("caption");
+  var closeBtn = document.getElementsByClassName("close")[0];
+
+  // Add click event to all gallery/profile images
+  document.querySelectorAll(".popup-img").forEach(function(img) {
+    img.addEventListener("click", function() {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+
+      // If there's a caption div after the image, use it
+      if (this.nextElementSibling && this.nextElementSibling.tagName === "DIV") {
+        captionText.innerHTML = this.nextElementSibling.innerHTML;
+      } 
+      // Otherwise (like profile pic), leave caption blank
+      else {
+        captionText.innerHTML = "";
+      }
+    });
+  });
+
+  // Close modal
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+</script>
+
+
+
+            <!-- Footer -->
+            <table style="width: 100%; margin: auto; border-collapse: separate">
+              <tbody>
+                <tr>
+                  <td style="padding: 0">
+                    <p style="text-align: center; font-size: small">
+                      
+                      <strong> © 2025 Sadia Nur Nazifa |</strong> Template adapted from
+                      
+                      <a href="https://github.com/jonbarron/jonbarron_website"
+                        >Jon Barron's website</a
+                      >.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const SHOW = 3;
+
+  const newsHeader = document.getElementById('news');
+  if (!newsHeader) return;
+
+  // Find the first sibling that contains .news-item blocks
+  let list = newsHeader.nextElementSibling;
+  while (list && !list.querySelector('.news-item')) {
+    list = list.nextElementSibling;
+  }
+  if (!list) return;
+
+  const items = Array.from(list.querySelectorAll('.news-item'));
+  if (items.length <= SHOW) return;
+
+  // Hide all but first SHOW
+  items.slice(SHOW).forEach(el => el.classList.add('is-hidden'));
+
+  // Build buttons
+  const actions = document.createElement('div');
+  actions.className = 'news-actions';
+
+  const more = document.createElement('button');
+  more.type = 'button';
+  more.className = 'btn more';
+  more.textContent = 'Show more';
+  more.setAttribute('aria-expanded', 'false');
+
+  const less = document.createElement('button');
+  less.type = 'button';
+  less.className = 'btn less';
+  less.textContent = 'Show less';
+  less.style.display = 'none';
+  less.setAttribute('aria-expanded', 'true');
+
+  actions.appendChild(more);
+  actions.appendChild(less);
+  list.after(actions);
+
+  function collapse(on) {
+    items.slice(SHOW).forEach(el => el.classList.toggle('is-hidden', on));
+    more.style.display = on ? '' : 'none';
+    less.style.display = on ? 'none' : '';
+    more.setAttribute('aria-expanded', String(!on));
+    less.setAttribute('aria-expanded', String(!on));
+  }
+
+  more.addEventListener('click', () => {
+    // Expand immediately (no scroll changes)
+    collapse(false);
+  });
+
+  less.addEventListener('click', () => {
+    // 1) Turn off smooth scroll just for this action
+    const docEl = document.documentElement;
+    const prevBehavior = docEl.style.scrollBehavior;
+    docEl.style.scrollBehavior = 'auto';
+
+    // 2) Disable scroll anchoring so the browser doesn't "helpfully" nudge
+    const prevAnchor = list.style.overflowAnchor;
+    list.style.overflowAnchor = 'none';
+
+    // 3) Compute target Y (account for fixed navbar height)
+    const nav = document.querySelector('.navbar');
+    const navH = nav ? nav.getBoundingClientRect().height : 0;
+    const targetY = window.pageYOffset + newsHeader.getBoundingClientRect().top - (navH + 10);
+
+    // 4) Jump instantly to header, then collapse on next frame
+    window.scrollTo({ top: Math.max(targetY, 0), left: 0, behavior: 'auto' });
+    requestAnimationFrame(() => {
+      collapse(true);
+      // Restore previous settings
+      list.style.overflowAnchor = prevAnchor || '';
+      docEl.style.scrollBehavior = prevBehavior || '';
+    });
+  });
+});
+
+
+
+
+
+
+    <!-- Typing + Toggle script -->
+    
+      
+  (function () {
+    const text = "Hi, I'm Sadia Nur Nazifa.";
+    const el = document.getElementById("typed-name");
+    let i = 0;
+
+    function tick() {
+      el.textContent = text.slice(0, i);
+      if (i < text.length) {
+        i++;
+        setTimeout(tick, 120); // typing speed
+      }
+    }
+    tick();
+  })();
+
+
+  (function () {
+    const nav = document.querySelector('.navbar');
+    if (!nav) return;
+
+    function setOffsets() {
+      const h = nav.getBoundingClientRect().height || 60;
+
+      // Match body padding to actual fixed navbar height (prevents overlap)
+      document.body.style.paddingTop = h + 'px';
+
+      // Ensure hash targets stop below the navbar
+      const selectors = [
+        '#about','#research','#news','#gallery',
+        '#projects-section','#publications-section','.section-content'
+      ];
+      selectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => {
+          el.style.scrollMarginTop = (h + 10) + 'px';
+        });
+      });
+    }
+
+    // Run on load and on resize/orientation changes
+    setOffsets();
+    window.addEventListener('resize', setOffsets);
+    window.addEventListener('orientationchange', setOffsets);
+  })();
+
+
+
+      function showSection(sectionId) {
+        document
+          .querySelectorAll(".section-content")
+          .forEach((sec) => sec.classList.remove("active"));
+        const target = document.getElementById(sectionId);
+        if (target) target.classList.add("active");
+
+        const btnPubs = document.getElementById("btn-pubs"),
+          btnProj = document.getElementById("btn-proj");
+        if (btnPubs && btnProj) {
+          btnPubs.classList.toggle(
+            "active",
+            sectionId === "publications-section"
+          );
+          btnProj.classList.toggle("active", sectionId === "projects-section");
+        }
+        if (target)
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      document.querySelectorAll(".navbar a").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          const href = this.getAttribute("href").replace("#", "");
+          if (href === "projects-section" || href === "publications-section") {
+            e.preventDefault();
+            showSection(href);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
