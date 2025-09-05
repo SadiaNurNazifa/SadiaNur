@@ -9,7 +9,9 @@
 
     <link rel="stylesheet" href="stylesheet.css" />
     <style>
-      
+      .name .pre { font-size: calc(1em - 5px); }
+
+.my-name { color: rgb(129, 128, 128); }
       html {
         scroll-behavior: smooth;
       }
@@ -1119,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', function () {
   (function () {
   const pre  = "Hi, I'm ";
   const name = "Sadia Nur Nazifa";
-  const post = ".";
+  const post = ".";                      
   const full = pre + name + post;
 
   const el = document.getElementById("typed-name");
@@ -1128,19 +1130,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const nStart = pre.length;
   const nEnd   = pre.length + name.length;
 
-  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function esc(s){ 
+    return s.replace(/&/g,"&amp;")
+            .replace(/</g,"&lt;")
+            .replace(/>/g,"&gt;");
+  }
 
   function tick() {
     let out = "";
     if (i <= nStart) {
-      
-      out = esc(full.slice(0, i));
+ 
+      out = '<span class="pre">' + esc(full.slice(0, i)) + '</span>';
     } else if (i <= nEnd) {
-      
-      out = esc(pre) + '<span class="my-name">' + esc(full.slice(nStart, i)) + "</span>";
+     
+      out = '<span class="pre">' + esc(pre) + '</span>'
+          + '<span class="my-name">' + esc(full.slice(nStart, i)) + '</span>';
     } else {
-      
-      out = esc(pre) + '<span class="my-name">' + esc(name) + "</span>" + esc(full.slice(nEnd, i));
+     
+      out = '<span class="pre">' + esc(pre) + '</span>'
+          + '<span class="my-name">' + esc(name) + '</span>'
+          + esc(full.slice(nEnd, i));
     }
 
     el.innerHTML = out;
@@ -1213,6 +1222,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </script>
   </body>
 </html>
+
 
 
 
