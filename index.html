@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="stylesheet.css" />
     <style>
-      /* Smooth scroll */
+      
       html {
         scroll-behavior: smooth;
       }
@@ -30,10 +30,10 @@ div {
         box-sizing: border-box;
       }
 
-      /* Body & navbar */
+     
       body {
         margin: 0;
-        padding-top: 60px; /* offset for fixed navbar */
+        padding-top: 60px; 
         font-family: "Times New Roman", Times, serif !important;
 
       }
@@ -60,7 +60,7 @@ div {
         color: white;
       }
 
-      /* Typing cursor effect */
+     
       .name {
         font-size: 28px;
         font-weight: 700;
@@ -83,7 +83,7 @@ div {
       }
 
 
-/*  fixed navbar short and non-obtrusive on phones */
+
 @media (max-width: 768px) {
   .navbar {
     white-space: nowrap;           /* keep links on one line */
@@ -93,7 +93,6 @@ div {
   }
   .navbar::-webkit-scrollbar { display: none; } /* hide scrollbar (WebKit) */
 
-  /* Keep the same inline look, just tighten spacing a bit for phones */
   .navbar a {
     float: none;                   /* let them flow inline */
     display: inline-block;         /* single row */
@@ -101,25 +100,25 @@ div {
     font-size: 16px;
   }
 
-  /* Body top padding a bit smaller on phones */
+ 
   body { padding-top: 54px; }
 }
 
-/* Make anchor targets stop below the fixed navbar (no content hidden) */
+
 #about, #research, #news, #gallery,
 #projects-section, #publications-section,
 .section-content {
-  scroll-margin-top: 70px;         /* safe default; JS below will refine */
+  scroll-margin-top: 70px;         
 }
 
 
 img { height: auto; }
 
-/* Make iframes fluid: keep 16:9 without editing HTML */
+
 iframe {
   width: 100% !important;
   height: auto !important;
-  aspect-ratio: 3 / 1.95;           /* modern browsers */
+  aspect-ratio: 3 / 1.95;           
   border: 0;
 }
 
@@ -138,7 +137,7 @@ img[alt="profile photo"] {
   border-radius: 50%;
 }
 
-/* Tables inside sections: allow clean stacking without changing content */
+
 @media (max-width: 768px) {
   .section-content table {
     width: 100%;
@@ -149,7 +148,7 @@ img[alt="profile photo"] {
   }
 }
 
-/* Lightbox modal: more breathable on phones */
+
 @media (max-width: 768px) {
   .popup-modal { padding-top: 30px; }
   .popup-content { max-width: 90%; max-height: 80%; }
@@ -157,10 +156,10 @@ img[alt="profile photo"] {
   .close { top: 10px; right: 16px; font-size: 34px; }
 }
 
-/* Minor typo guard (doesn't change layout, just prevents invalid value) */
+
 .gallery-container > div { text-align: left; }
 
-      /* Responsive tables & flex containers */
+      
       table,
       img,
       .section-content,
@@ -194,7 +193,7 @@ img[alt="profile photo"] {
         }
       }
 
-      /* Toggle buttons */
+     
       .toggle-buttons {
         text-align: left;
         margin: 16px 0 8px;
@@ -220,7 +219,6 @@ img[alt="profile photo"] {
         border: 2px solid #272727;
       }
 
-      /* Sections */
       .section-content {
         display: none;
       }
@@ -228,7 +226,6 @@ img[alt="profile photo"] {
         display: block;
       }
 
-      /* Research boxes */
       .research-container > div {
         flex: 1;
         min-width: 200px;
@@ -240,7 +237,6 @@ img[alt="profile photo"] {
         text-align: left;
       }
 
-      /* Gallery */
 .gallery-container {
   width: 100%;
   max-width: 900px;
@@ -254,7 +250,7 @@ img[alt="profile photo"] {
 }
 
 .gallery-container > div {
-  flex: 1 1 calc(50% - 10px); /* now 2 items per row */
+  flex: 1 1 calc(50% - 10px); 
   text-align: le;
   margin-bottom: 15px;
 }
@@ -266,7 +262,7 @@ img[alt="profile photo"] {
 }
 
 
-      /* News items */
+      
       .news-item {
         background: #fff;
         padding: 15px 20px;
@@ -286,7 +282,7 @@ img[alt="profile photo"] {
   </head>
 
   <body>
-    <!-- Navbar -->
+  
     <div class="navbar">
       <a href="#about">About</a>
       <a href="#research">Research Interest</a>
@@ -302,7 +298,7 @@ img[alt="profile photo"] {
       <a href="#gallery">Gallery</a>
     </div>
 
-    <!-- Main Content -->
+  
     <table
       style="
         width: 100%;
@@ -465,7 +461,7 @@ Beyond teaching and research, I enjoy baking brownies and cakes, and a bit of cr
               </tbody>
             </table>
 
-            <!-- Toggle Buttons + Sections -->
+            
             <div class="toggle-buttons" id="work-toggle">
               <button
                 id="btn-pubs"
@@ -772,28 +768,19 @@ Beyond teaching and research, I enjoy baking brownies and cakes, and a bit of cr
               </table>
             </div>
 <style>
-   /* Smooth hover effect for the news toggle buttons */
-  /* .news-actions .btn {
-    transition: background-color .2s ease, transform .05s ease;
-  }
-  /* Same hover color for both buttons */
-  /* .news-actions .btn:hover {
-        background: #ccc;   /* darker than #555555 */
+   
   
   .news-actions .btn:active {
     transform: translateY(1px);
   }  */
-  /* Replace your previous button hover/active snippet with this */
+  
 .news-actions .btn {
-  transition: background-color .12s ease; /* no transform transition */
+  transition: background-color .12s ease;
 }
 .news-actions .btn:hover { background: #ccc; }
-.news-actions .btn:active { transform: none; } /* no down-then-up nudge */
+.news-actions .btn:active { transform: none; }
 
-  /* .news-actions .btn:focus-visible {
-    outline: 2px solid #000; 
-    outline-offset: 2px;
-  } */
+
   .news-item.is-hidden { display: none; }
   .news-actions { width: 100%; max-width: 800px; margin: 8px auto 0; text-align: center;}
   .news-actions .btn {
@@ -933,7 +920,6 @@ Beyond teaching and research, I enjoy baking brownies and cakes, and a bit of cr
   </div>
 </div>
 
-<!-- Popup Modal -->
 <div id="popupModal" class="popup-modal">
   <span class="close">&times;</span>
   <img class="popup-content" id="popupImage">
@@ -941,7 +927,7 @@ Beyond teaching and research, I enjoy baking brownies and cakes, and a bit of cr
 </div>
 
 <style>
-/* Popup styles */
+
 .popup-modal {
   display: none; 
   position: fixed; 
@@ -984,30 +970,30 @@ Beyond teaching and research, I enjoy baking brownies and cakes, and a bit of cr
 </style>
 
 <script>
-  // Get modal element
+  
   var modal = document.getElementById("popupModal");
   var modalImg = document.getElementById("popupImage");
   var captionText = document.getElementById("caption");
   var closeBtn = document.getElementsByClassName("close")[0];
 
-  // Add click event to all gallery/profile images
+ 
   document.querySelectorAll(".popup-img").forEach(function(img) {
     img.addEventListener("click", function() {
       modal.style.display = "block";
       modalImg.src = this.src;
 
-      // If there's a caption div after the image, use it
+      
       if (this.nextElementSibling && this.nextElementSibling.tagName === "DIV") {
         captionText.innerHTML = this.nextElementSibling.innerHTML;
       } 
-      // Otherwise (like profile pic), leave caption blank
+      
       else {
         captionText.innerHTML = "";
       }
     });
   });
 
-  // Close modal
+  
   closeBtn.onclick = function() {
     modal.style.display = "none";
   }
@@ -1046,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const newsHeader = document.getElementById('news');
   if (!newsHeader) return;
 
-  // Find the first sibling that contains .news-item blocks
+ 
   let list = newsHeader.nextElementSibling;
   while (list && !list.querySelector('.news-item')) {
     list = list.nextElementSibling;
@@ -1056,10 +1042,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const items = Array.from(list.querySelectorAll('.news-item'));
   if (items.length <= SHOW) return;
 
-  // Hide all but first SHOW
+ 
   items.slice(SHOW).forEach(el => el.classList.add('is-hidden'));
 
-  // Build buttons
+ 
   const actions = document.createElement('div');
   actions.className = 'news-actions';
 
@@ -1089,30 +1075,29 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   more.addEventListener('click', () => {
-    // Expand immediately (no scroll changes)
+   
     collapse(false);
   });
 
   less.addEventListener('click', () => {
-    // 1) Turn off smooth scroll just for this action
+    
     const docEl = document.documentElement;
     const prevBehavior = docEl.style.scrollBehavior;
     docEl.style.scrollBehavior = 'auto';
 
-    // 2) Disable scroll anchoring so the browser doesn't "helpfully" nudge
+    
     const prevAnchor = list.style.overflowAnchor;
     list.style.overflowAnchor = 'none';
 
-    // 3) Compute target Y (account for fixed navbar height)
     const nav = document.querySelector('.navbar');
     const navH = nav ? nav.getBoundingClientRect().height : 0;
     const targetY = window.pageYOffset + newsHeader.getBoundingClientRect().top - (navH + 10);
 
-    // 4) Jump instantly to header, then collapse on next frame
+   
     window.scrollTo({ top: Math.max(targetY, 0), left: 0, behavior: 'auto' });
     requestAnimationFrame(() => {
       collapse(true);
-      // Restore previous settings
+      
       list.style.overflowAnchor = prevAnchor || '';
       docEl.style.scrollBehavior = prevBehavior || '';
     });
@@ -1136,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', function () {
       el.textContent = text.slice(0, i);
       if (i < text.length) {
         i++;
-        setTimeout(tick, 120); // typing speed
+        setTimeout(tick, 120); 
       }
     }
     tick();
@@ -1150,10 +1135,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function setOffsets() {
       const h = nav.getBoundingClientRect().height || 60;
 
-      // Match body padding to actual fixed navbar height (prevents overlap)
+      
       document.body.style.paddingTop = h + 'px';
 
-      // Ensure hash targets stop below the navbar
       const selectors = [
         '#about','#research','#news','#gallery',
         '#projects-section','#publications-section','.section-content'
@@ -1164,8 +1148,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       });
     }
-
-    // Run on load and on resize/orientation changes
     setOffsets();
     window.addEventListener('resize', setOffsets);
     window.addEventListener('orientationchange', setOffsets);
@@ -1205,3 +1187,4 @@ document.addEventListener('DOMContentLoaded', function () {
     </script>
   </body>
 </html>
+
