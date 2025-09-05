@@ -1115,19 +1115,41 @@ document.addEventListener('DOMContentLoaded', function () {
     
       
   (function () {
-    const text = "Hi, I'm Sadia Nur Nazifa.";
-    const el = document.getElementById("typed-name");
-    let i = 0;
+  const pre  = "Hi, I'm ";
+  const name = "Sadia Nur Nazifa";
+  const post = ".";
+  const full = pre + name + post;
 
-    function tick() {
-      el.textContent = text.slice(0, i);
-      if (i < text.length) {
-        i++;
-        setTimeout(tick, 120); 
-      }
+  const el = document.getElementById("typed-name");
+  let i = 0;
+
+  const nStart = pre.length;
+  const nEnd   = pre.length + name.length;
+
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function tick() {
+    let out = "";
+    if (i <= nStart) {
+      
+      out = esc(full.slice(0, i));
+    } else if (i <= nEnd) {
+      
+      out = esc(pre) + '<span class="my-name">' + esc(full.slice(nStart, i)) + "</span>";
+    } else {
+      
+      out = esc(pre) + '<span class="my-name">' + esc(name) + "</span>" + esc(full.slice(nEnd, i));
     }
-    tick();
-  })();
+
+    el.innerHTML = out;
+
+    if (i < full.length) {
+      i++;
+      setTimeout(tick, 120); 
+    }
+  }
+  tick();
+})();
 
 
   (function () {
@@ -1189,6 +1211,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </script>
   </body>
 </html>
+
 
 
 
